@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Sleep Token - Show me how to dance forever</title>
+        <link rel="shortcut icon" href="./assets/img/fav.png">
+        <!-- styles -->
+        <link rel="stylesheet" id="css-library" href="css/style.css?v=0000003" media="all">
+        </head>
+
+    <body>
+        <!-- Main -->
+        <main>
+            <!-- letter-container -->
+            <div id="letter-container"></div>
+            <!-- end letter-container -->
+
+            <!-- newsletter -->
+            <div id="newsletter-container" class="hidden">
+                
+                <form id="sleep-token-newsletter-code">
+                    <input type="hidden" name="js_url" id="js_url" value="https://subs.sonymusicfans.com/submit">
+                    <input type="hidden" name="ae_segment_id" id="ae_segment_id" value="2326665">
+                    <input type="hidden" name="ae_brand_id" id="ae_brand_id" value="5326336">
+                    <input type="hidden" name="ae_activities" id="ae_activities" value='{"actions":{"formsubmission":163967,"secondaryformsubmission":0},"mailing_list_optins":{"a0STy000000F0xNMAS":163968}}'>
+                    <input type="hidden" name="ae" id="ae" value="db1275a443487a733c0a9127248d15de1f9e914d0e58fb57d1e3dbf16b7d6167">
+                    <input type="hidden" name="form" value="549359">
+                    <input type="hidden" name="triggered_sends[]" value="6402405;32981;a0STy000000F0xNMAS">
+
+                    <!-- Form Fields -->
+                    <div class="form-group" data-validation="Enter a valid email address">
+                        <label for="field_email_address" class="sr-only">
+                            Email
+                        </label>
+                        <input class="form-control" id="field_email_address" name="field_email_address" type="email" required
+                            placeholder="Email">
+                    </div>
+
+                    <input type="checkbox" name="triggered_sends[]" id="confirmation_email" class="display-none" checked="checked" value="">
+                    <input type="checkbox" name="triggered_sends[]" id="ts-for-mailing-list-id[0]" class="triggered_sends display-none" value="6402405;32981;a0STy000000F0xNMAS">
+
+                    <div class="input-group hidden">
+                        <div class="checkbox">
+                            <label for="mailing-list-id[0]">
+                                <input type="hidden" id="mailing-list-id[0]" name="mailing-list-id[0]" value="a0STy000000F0xNMAS">
+                            </label>
+                        </div>
+                    </div>
+                    <!-- Submit Button -->
+                    <button type="submit" id="submit_join" class="btn btn-default">SUBMIT</button>
+                </form>
+
+                <span class="legal">
+                    By connecting, you agree to receive news and updates from Sleep Token and Sony Music Entertainment.
+                    For more information on how we use your data, please see the links below.
+                </span>
+
+            </div>
+            <!-- end newsletter -->
+
+        </main>
+        <!-- End Main -->
+
+        <!-- Footer -->
+        <footer>
+            <div class="footer-container">
+
+                <!-- disclaimer -->
+                <div class="disclaimer">
+                    <p>
+                        © <span id="current_year"></span>
+                        <a href="https://www.sonymusic.com/" rel="noopener" target="_blank">
+                            Sony Music Entertainment. All Rights Reserved.
+                        </a>|
+                        <a href="https://www.sonymusic.com/terms-and-conditions/" rel="noopener" target="_blank">
+                            Terms and Conditions
+                        </a>|
+                        <a href="https://www.sonymusic.com/privacy-policy/" rel="noopener" target="_blank">
+                            Privacy Policy
+                        </a>|
+                        <a href="https://www.sonymusic.com/how-we-use-your-data/" rel="noopener" target="_blank">
+                            How We Use Your Data
+                        </a>|
+                        <a href="https://www.sonymusic.com/privacy-policy/#your-california-privacy-rights" rel="noopener"
+                            target="_blank">
+                            Your California Privacy Rights
+                        </a>|
+                        <a href="https://www.sonymusic.com/ccpa-contact-form/" rel="noopener" target="_blank">
+                            Do Not Sell My Personal Information
+                        </a>|
+                        <a href="https://www.sonymusic.com/feedback/" target="_blank">
+                            Send Us Feedback
+                        </a>
+                    </p>
+                </div>
+                <!-- end disclaimer -->
+
+            </div>
+        </footer>
+        <!-- end footer -->
+
+        <div class="video-container">
+            <video id="videoloop-1" class="videoloop-1" loop autoplay muted preload playsinline poster="assets/vid/videoloop.webp">
+                <source src="assets/vid/videoloop-1.webm" type="video/webm">
+                <source src="assets/vid/videoloop-1.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+            <video id="videoloop-2" class="videoloop-2 hidden" loop autoplay muted preload playsinline poster="assets/vid/videoloop.webp">
+                <source src="assets/vid/videoloop-2.webm" type="video/webm">
+                <source src="assets/vid/videoloop-2.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </div>
+
+        <div class="overlay"></div>
+
+        <!-- modals -->
+        <div class="modal hidden" id="msj-modal">
+            <h2>Thank you</h2>
+        </div>
+      
+        <!-- end modals -->
+
+        <!-- libs -->
+        <script src="js/lib/jquery/3-6-0/jquery.min.js"></script>
+
+        <!-- scripts -->
+        <script src="js/scripts.js?v=0000003"></script>
+        <script>
+            // campaign
+            jQuery(document).ready(function ($) {
+                $("#sleep-token-newsletter-code").on("submit", function (e) {
+                    e.preventDefault();
+                    var data = $(this).serialize();
+                    $.ajax({
+                        type: "POST",
+                        url: "https://subs.sonymusicfans.com/submit",
+                        dataType: "json",
+                        data: data,
+                        xhrFields: {
+                            withCredentials: false
+                        },
+                        success: function (data) {
+                            $('body').addClass('open-modal');
+                            $('.modal').addClass('hidden');
+                            $("#msj-modal h2").html("with gratitude");
+                            $('#msj-modal').removeClass('hidden');
+                        },
+                        error: function (err) {
+                            $('body').addClass('open-modal');
+                            $('.modal').addClass('hidden');
+                            $("#msj-modal h2").html("It seems there was a problem. Please try again.");
+                            $('#msj-modal').removeClass('hidden');
+                        }
+                    });
+                });
+
+                $('body').on('change', '.mailing-list-id', function () {
+                    $("#ts-for-" + $(this).attr('id')).prop("checked", $(this).is(':checked'));
+                });
+            });
+        </script>
+    </body>
+
+    <!--                                        -->
+    <!--       52°48'05.0"N 2°00'45.0"W         -->
+    <!--                                        -->
+    <!--                                        -->
+    <!--            @@@@@@@@@@@@@@              -->
+    <!--         @@@@@@@@@@@@@@@@@@@@           -->
+    <!--       @@@@@@@#=::::::=#@@@@@@@         -->
+    <!--      @@@@@#::::::::::::::#@@@@@        -->
+    <!--     @@@@%-::::::::::::::::-@@@@@       -->
+    <!--    @@@@%:::::::::::::::::::-%@@@@      -->
+    <!--    @@@@-::::::::::::::::::::-@@@@      -->
+    <!--    @@@%::::::::::::::::::::::@@@@      -->
+    <!--    @@@%::::::::::::::::::::::%@@@      -->
+    <!--    @@@%::::::::::::::::::::::%@@@      -->
+    <!--    @@@%::::::::::::::::::::::%@@@      -->
+    <!--    @@@%::::::::::::::::::::::%@@@      -->
+    <!--    @@@%::::::::::::::::::::::%@@@      -->
+    <!--    @@@%::::::::::::::::::::::%@@@      -->
+    <!--    @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@      -->
+    <!--    @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@      -->
+    <!--                                        -->
+    <!--                                        -->
+</html>
